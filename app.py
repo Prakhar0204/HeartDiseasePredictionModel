@@ -50,14 +50,10 @@ with tab1:
     predictions = []
     def predict_heart_disease(data):
         for modelname in modelnames:
-             try:
                 model_path = os.path.join(os.path.dirname(__file__), modelname)
                 model = pickle.load(open(model_path, 'rb'))
                 prediction = model.predict(data)
                 predictions.append(prediction)
-            except FileNotFoundError:
-                st.error(f"Model file {modelname} not found!")
-                return None
         return predictions
             
 
@@ -75,5 +71,6 @@ with tab1:
             else:
                 st.write("Heart disease detected.")
             st.markdown('------------------------')          
+
 
 
