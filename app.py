@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import base64
+from pathlib import Path
 
 st.title("Heart Disease Predictor")
 tab1,tab2 = st.tabs(['Predict','Model Information'])
@@ -49,10 +50,16 @@ with tab1:
     predictions = []
     def predict_heart_disease(data):
         for modelname in modelnames:
-            model = pickle.load(open(modelname, 'rb'))
-            prediction = model.predict(data)
-            predictions.append(prediction)
+             try:
+                model_path = os.path.join(os.path.dirname(__file__), modelname)
+                model = pickle.load(open(model_path, 'rb'))
+                prediction = model.predict(data)
+                predictions.append(prediction)
+            except FileNotFoundError:
+                st.error(f"Model file {modelname} not found!")
+                return None
         return predictions
+            
 
     # create a submit button to make predictions
     if st.button("Submit"):
@@ -68,4 +75,5 @@ with tab1:
             else:
                 st.write("Heart disease detected.")
             st.markdown('------------------------')          
+
 
