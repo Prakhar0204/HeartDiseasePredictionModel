@@ -44,7 +44,7 @@ with tab1:
     })
 
     algonames = ['Decision Trees', 'Logistic Regression', 'Random Forest', 'Support Vector Machine', 'Grid Random Forest']
-    modelnames = ['Desicion.pkl','LogisticR.pkl','RandomForest.pkl','SVM.pkl','GridRF.pkl']
+    modelnames = ['DesicionTree.pkl','LogisticR.pkl','RandomForest.pkl','SVM.pkl','GridRF.pkl']
 
     predictions = []
     def predict_heart_disease(data):
@@ -68,3 +68,4 @@ with tab1:
             else:
                 st.write("Heart disease detected.")
             st.markdown('------------------------')          
+
